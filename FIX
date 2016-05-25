@@ -1,0 +1,13 @@
+Talk:MUMmer
+Thanks for the hint about the recent "MEMs" implementation that "can serve as a drop-in replacement for the MEMs algorithm in MUMmer 3". Seems to be working perfectly where MUMmer crashed :-) --Dan 15:08, 5 January 2010 (UTC)
+The error from the original MUMmer was:
+mummer: suffix tree construction failed: textlen=727301215 larger than maximal textlen=536870908
+
+(This problem also can be solved by building a 64-bit version of mummer, making sure the #define SIXTYFOURBITS is set in types.h)
+(In other words, add a line to the src/kurtz/libbasedir/types.h file with this content
+#define SIXTYFOURBITS
+before the line that says
+#ifdef SIXTYFOURBITS
+and then run
+make install
+again)
